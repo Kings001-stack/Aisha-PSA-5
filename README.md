@@ -38,7 +38,8 @@ Opal is a professional design agency website that showcases services, portfolio 
   - Authentication
   - Row-Level Security (RLS)
   - Storage for images
-- **Supabase SSR** - Server-side rendering support
+- **Supabase SSR** - Server-side rendering support with passive token management
+- **Bulletproof Proxy** - Centralized, race-condition-safe authentication authority
 
 ### Forms & Validation
 
@@ -86,15 +87,12 @@ Opal is a professional design agency website that showcases services, portfolio 
 ├── lib/                          # Utilities and configurations
 │   ├── supabase/                 # Supabase client setup
 │   │   ├── client.ts             # Browser client
-│   │   ├── server.ts             # Server client
-│   │   ├── middleware.ts         # Auth middleware
+│   │   ├── server.ts             # Server client (Passive Mode)
 │   │   └── storage.ts            # Storage utilities
 │   ├── types.ts                  # TypeScript types
 │   └── utils.ts                  # Helper functions
-├── scripts/                      # Database setup scripts
-│   └── 001_create_tables.sql     # Database schema
-├── public/                       # Static assets
-└── middleware.ts                 # Next.js middleware
+├── proxy.ts                      # Centralized Auth Proxy (Next.js 16 convention)
+└── next.config.mjs               # Next.js configuration
 ```
 
 ## Database Schema
@@ -224,7 +222,8 @@ pnpm dev
 - Secure login with email/password
 - Password requirements: 8-20 characters, letters, numbers, symbols
 - Session management with Supabase Auth
-- Protected routes with middleware
+- **Bulletproof Auth**: Passive server-side checks with browser-side token refresh to eliminate race conditions.
+- Protected routes with custom Proxy middleware.
 
 ## Frontend Pages
 
@@ -304,7 +303,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=   # Your Supabase anonymous key
 
 1. Push code to GitHub
 2. Import project in Vercel
-3. Add environment variables
+3. Add environment variables:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY` (Required for full admin functionality)
 4. Deploy
 
 ### Other Platforms

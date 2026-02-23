@@ -67,19 +67,23 @@ VALUES ('YOUR_SUPABASE_USER_ID_HERE', 'First', 'Last', 'admin');
 
 ## Password Requirements
 
-Your password must:
-- Be 8-20 characters long
-- Contain at least one uppercase letter (A-Z)
-- Contain at least one lowercase letter (a-z)
-- Contain at least one number (0-9)
-- Contain at least one special symbol (!@#$%^&*)
-
 Example valid password: `Admin@123456`
+
+## Step 4: Preparing for Hosting
+
+To deploy the application (e.g., to Vercel), ensure you set these environment variables in your hosting provider's dashboard:
+
+1. **NEXT_PUBLIC_SUPABASE_URL**: Your Supabase Project URL.
+2. **NEXT_PUBLIC_SUPABASE_ANON_KEY**: Your Supabase Anonymous Key.
+3. **SUPABASE_SERVICE_ROLE_KEY**: Your Supabase Service Role Key (Found in Project Settings -> API). **Warning**: Keep this secret!
+
+### Note on Build Logs
+When running `npm run build`, you may see logs like `[AdminLayout] No session detected`. This is **normal**. It happens because the build process tries to pre-render the admin pages without a user logged in. The build is successful as long as it finishes with `Compiled successfully`.
 
 ## Troubleshooting
 
-### "Failed to fetch" error during login
-- **Solution**: Make sure the database tables are created by running the SQL migration script
+### "Failed to fetch" or "Already Used" errors
+- **Solution**: We have implemented a "Passive Proxy" to prevent these. If you still see them, **Clear your browser cookies** and restart your browser.
 
 ### "User not found in admins table"
 - **Solution**: You need to insert your user ID into the admins table using the SQL command above
