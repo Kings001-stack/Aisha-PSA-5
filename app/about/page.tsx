@@ -68,19 +68,19 @@ export default function AboutPage() {
     {
       name: "Opal",
       role: "Founder & Creative Director",
-      image: "/aisha-portrait.jpg",
+      image: "/w3.jpeg",
       description: "Visionary leader with a passion for creating digital products that solve real-world problems through exceptional design.",
     },
     {
       name: "Gift Gagara",
       role: "Lead UI/UX Designer",
-      image: "/asian-man-portrait.png",
+      image: "/w2.jpeg",
       description: "Expert in crafting intuitive user interfaces and seamless experiences for web and mobile platforms.",
     },
     {
       name: "Zainab Wahab",
       role: "Branding Specialist",
-      image: "/hijab-woman-portrait.jpg",
+      image: "/w1.jpeg",
       description: "Dedicated to building strong brand identities that resonate with global audiences and drive growth.",
     },
   ]
